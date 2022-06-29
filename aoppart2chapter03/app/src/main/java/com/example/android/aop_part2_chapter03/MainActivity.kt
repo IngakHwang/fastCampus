@@ -65,10 +65,8 @@ class MainActivity : AppCompatActivity() {
             val passwordFromUser = "${numberPicker1.value}${numberPicker2.value}${numberPicker3.value}"
 
             if(passwordPreferences.getString("password", "000").equals(passwordFromUser)){
-                //패스워드 성공
                 startActivity(Intent(this,DiaryActivity::class.java))
             }else {
-                //실패
                 showErrorAlerDialog()
             }
         }
@@ -78,7 +76,6 @@ class MainActivity : AppCompatActivity() {
             val passwordFromUser = "${numberPicker1.value}${numberPicker2.value}${numberPicker3.value}"
 
             if(changePasswordMode){
-                //번호 저장
                 passwordPreferences.edit(true){
                     putString("password", passwordFromUser)
                 }
@@ -87,18 +84,12 @@ class MainActivity : AppCompatActivity() {
                 changePasswordButton.setBackgroundColor(Color.BLACK)
 
             }else{
-                // changePasswordMode 활성화
-                // 비밀번호가 맞는지 체크
-
                 if(passwordPreferences.getString("password", "000").equals(passwordFromUser)){
-                    //패스워드 성공
-
                     changePasswordMode = true
                     Toast.makeText(this,"변경할 비밀번호를 입력해주세요.",Toast.LENGTH_SHORT).show()
                     changePasswordButton.setBackgroundColor(Color.RED)
 
                 }else {
-                    //실패
                     showErrorAlerDialog()
                 }
             }
